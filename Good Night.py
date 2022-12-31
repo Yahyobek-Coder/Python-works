@@ -1,0 +1,72 @@
+import turtle
+import random
+
+win = turtle.Screen()
+win.setup(width=935,height=630)
+win.bgcolor("black")
+turtle.title("Good Night by Yahyobek")
+
+moon = turtle.Turtle()
+moon.hideturtle()
+
+star = turtle.Turtle()
+star.speed(0)
+star.hideturtle()
+
+text = turtle.Turtle()
+text.speed(6)
+text.hideturtle()
+
+colors = ["red","blue","green","orange","gold","springgreen","aqua","magenta","purple","peru","ivory","dark orange"]
+
+
+def draw_moon(pos,color):
+    x,y = pos
+    moon.color(color)
+    moon.penup()
+    moon.goto(x,y)
+    moon.pendown()
+    moon.begin_fill()
+    moon.circle(50)
+    moon.end_fill()
+
+def draw_star(pos,color,Length):
+    x,y = pos
+    star.color(color)
+    star.penup()
+    star.goto(x,y)
+    star.pendown()
+    star.begin_fill()
+    for i in range(5):
+        star.forward(Length)
+        star.right(144)
+        star.forward(Length)
+    star.end_fill()
+
+def write_text(color):
+    text.color(color)
+    text.penup()
+    text.goto(-155,-285)
+    text.pendown()
+    style = ("Stencil Std Bold",35,"normal")
+    text.write("""Good Night \n Xayrli Tun!""",font=style,move=True)
+
+def random_pos():
+    return (random.randint(-320,320),random.randint(-200,290))
+
+def random_length():
+    return random.randint(5,25)
+
+
+draw_moon((-300,170),"white")
+draw_moon((-278,183),"black")
+
+while True:
+    color = random.choice(colors)
+    pos = random_pos()
+    length = random_length()
+
+    draw_star(pos,color,length)
+    write_text(color)
+
+turtle.done()
